@@ -2,14 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BlockMath } from "react-katex";
 import 'katex/dist/katex.min.css';
-
-interface Problem {
-    problem_type: string,
-    id: string,
-    content: string,
-    condition: string,
-    answer: string,
-}
+import { type Problem } from "../models/problems";
 
 function Problems() {
     const { problem_type, id } = useParams<{ problem_type: string; id: string }>();
