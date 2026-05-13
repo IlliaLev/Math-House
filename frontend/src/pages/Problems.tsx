@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { BlockMath } from "react-katex";
+import 'katex/dist/katex.min.css';
 
 interface Problem {
     problem_type: string,
@@ -45,7 +47,7 @@ function Problems() {
             <div>
                 <h1>{problem.problem_type}</h1>
                 <h4>{problem.id}</h4>
-                <p>{problem.content}</p>
+                <BlockMath math={problem.content} />
                 <p>{problem.condition}</p>
                 <p>{problem.answer}</p>
             </div>
