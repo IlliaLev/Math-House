@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BlockMath } from "react-katex";
 import 'katex/dist/katex.min.css';
 import { type Problem } from "../models/problems";
+import ProblemDisplay from "../components/ProblemDisplay";
 
 function Problems() {
     const { problem_type, id } = useParams<{ problem_type: string; id: string }>();
@@ -35,15 +35,10 @@ function Problems() {
     )
 
     return (
-        <main>
-            Problems Page
-            <div>
-                <h1>{problem.problem_type}</h1>
-                <h4>{problem.id}</h4>
-                <BlockMath math={problem.content} />
-                <p>{problem.condition}</p>
-                <p>{problem.answer}</p>
-            </div>
+        <main className={`
+            
+        `}>
+            <ProblemDisplay problem_type={problem.problem_type} content={problem.content} condition={problem.condition} answer={problem.answer}/>
         </main>
     )
 }
