@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import { type Problem } from "../models/problems";
 import ProblemDisplay from "../components/ProblemDisplay";
 
-function Problems() {
+function TypedIdProblems() {
     const { problem_type, id } = useParams<{ problem_type: string; id: string }>();
 
     const [problem, setProblem] = useState<Problem | null> (null);
@@ -25,22 +25,20 @@ function Problems() {
                 setLoading(false);
             });
     }, [problem_type, id]);
-    if(loading) {
-        return (
-            <p>Loading</p>
-        )
-    }
-    if(!problem) return (
-        <p>Not Found</p>
-    )
+
+    const content = loading ? (<p>Loading</p>)
+        : !problem ? (<p>Not Found</p>)
+        : (<ProblemDisplay problem_type={problem.problem_type} content={problem.content} condition={problem.condition} answer={problem.answer}/>);
 
     return (
         <main className={`
-            
+            bg-cl-bg min-h-screen max-h-screen w-full
+            flex flex-col flex-1 items-center justify-center
+            text-cl-text-900
         `}>
-            <ProblemDisplay problem_type={problem.problem_type} content={problem.content} condition={problem.condition} answer={problem.answer}/>
+            {content}
         </main>
     )
 }
 
-export default Problems;
+export default TypedIdProblems;

@@ -1,6 +1,8 @@
 function Home() {
     return (
-        <main>
+        <main className={`
+            
+        `}>
             This is Home Page
         </main>
     )

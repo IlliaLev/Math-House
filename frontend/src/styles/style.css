@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-cl-bg: #000000;
+    --color-cl-bg-inner-100: #0A0B09;
+    --color-cl-bg-inner-200: #0A0B09;
+    --color-cl-gr-from: #C2320A; /*#FFD447;*/
+    --color-cl-gr-to: #F34616; /*#F6511D;*/
+    --color-cl-text-900: #D4D7D8;
+}
