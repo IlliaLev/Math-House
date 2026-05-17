@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import 'katex/dist/katex.min.css';
 import { type Problem } from "../models/problems";
 import ProblemDisplay from "../components/ProblemDisplay";
+import LoadingDiv from "../components/LoadingDiv";
+import NotFoundDiv from "../components/NotFoundDiv";
 
 function TypedIdProblems() {
     const { problem_type, id } = useParams<{ problem_type: string; id: string }>();
@@ -26,8 +28,8 @@ function TypedIdProblems() {
             });
     }, [problem_type, id]);
 
-    const content = loading ? (<p>Loading</p>)
-        : !problem ? (<p>Not Found</p>)
+    const content = loading ? (<LoadingDiv />)
+        : !problem ? (<NotFoundDiv />)
         : (<ProblemDisplay problem_type={problem.problem_type} content={problem.content} condition={problem.condition} answer={problem.answer}/>);
 
     return (
