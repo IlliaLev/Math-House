@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BlockMath } from "react-katex";
 import 'katex/dist/katex.min.css';
 import { type Problem } from "../models/problems";
+import CollapsibleDiv from "../components/CollapsibleDiv";
 
 function TypedProblems() {
     const { problem_type } = useParams<{ problem_type: string }>();
@@ -36,14 +36,20 @@ function TypedProblems() {
     }
 
     return (
-        <main>
+        <main className={`
+            bg-cl-bg min-h-screen w-full
+            flex flex-col flex-1 items-center 
+            text-cl-text-900
+        `}>
+            <h1 className="mt-5">{problem_type} Problems</h1>
             <ul>
                 {problems?.map((problem) => (
                     <li key={problem.id}>
-                        <p>{problem.problem_type}</p>
-                        <p>{problem.condition}</p>
-                        <BlockMath math={problem.content} />
-                        <p>{problem.answer}</p>
+                        <CollapsibleDiv problem_type={problem.problem_type} 
+                                        id={problem.id} 
+                                        content={problem.content} 
+                                        condition={problem.condition} 
+                                        answer={problem.answer} />
                     </li>
                 ))}
             </ul>

@@ -27,7 +27,9 @@ function AllProblems() {
     }
 
     return (
-        <main>
+        <main className={`
+            
+        `}>
             <ul>
                 {problems?.map((problem) => (
                     <li key={problem.id}>

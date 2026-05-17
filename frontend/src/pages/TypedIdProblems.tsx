@@ -30,7 +30,7 @@ function TypedIdProblems() {
 
     const content = loading ? (<LoadingDiv />)
         : !problem ? (<NotFoundDiv />)
-        : (<ProblemDisplay problem_type={problem.problem_type} content={problem.content} condition={problem.condition} answer={problem.answer}/>);
+        : (<ProblemDisplay problem_type={problem.problem_type} id={problem.id} content={problem.content} condition={problem.condition} answer={problem.answer} header={true}/>);
 
     return (
         <main className={`

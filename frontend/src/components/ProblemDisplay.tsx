@@ -3,13 +3,16 @@ import { BlockMath } from "react-katex";
 import GradientBorderDiv from "./GradientBorderDiv";
 import LockedDiv from "./LockedDiv";
 
-type ProblemProps = Omit<Problem, 'id'> & Partial<Pick<Problem, 'id'>>;
+type ProblemProps = Omit<Problem, 'id'> & Partial<Pick<Problem, 'id'>> & { header?: boolean };
 
-function ProblemDisplay({problem_type, content, condition, answer} : ProblemProps) {
+function ProblemDisplay({problem_type, id, content, condition, answer, header} : ProblemProps) {
     return (
         <div className={`
             min-w-170
         `}>
+            {header ? (
+                <h1 className="text-3xl text-center">{problem_type} Problem №{id}</h1>
+            ) : (<></>)}
             <GradientBorderDiv outerClassName={`
                 m-10 
             `} innerClassName={`
