@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { type Problem } from "../models/problems";
-import { BlockMath } from "react-katex";
 import 'katex/dist/katex.min.css';
+import LoadingDiv from "../components/LoadingDiv";
+import NotFound from "./NotFound";
+import CollapsibleDiv from "../components/CollapsibleDiv";
 
 function AllProblems() {
-    const [problems, setProblems] = useState<Problem[]>();
+    const [problems, setProblems] = useState<Problem[] | null>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch(`/api/problems`)
             .then(res => res.json())
             .then(data => {
-                setProblems(data);
+                setProblems(Array.isArray(data) ? data : data.problems ?? null);
                 setLoading(false);
             })
             .catch((err) => {
@@ -20,26 +22,30 @@ function AllProblems() {
             })
     }, []);
 
-    if(loading) {
-        return (
-            <p>Loading</p>
-        )
-    }
-
-    return (
-        <main className={`
-            
-        `}>
+    const content = loading ? (<LoadingDiv />)
+        : !problems ? (<NotFound />)
+        : (<>
+            <h1 className="mt-5 text-2xl">All Problems</h1>
             <ul>
                 {problems?.map((problem) => (
                     <li key={problem.id}>
-                        <p>{problem.problem_type}</p>
-                        <p>{problem.condition}</p>
-                        <BlockMath math={problem.content} />
-                        <p>{problem.answer}</p>
+                        <CollapsibleDiv problem_type={problem.problem_type} 
+                                        id={problem.id} 
+                                        content={problem.content} 
+                                        condition={problem.condition} 
+                                        answer={problem.answer} />
                     </li>
                 ))}
             </ul>
+           </>)
+
+    return (
+        <main className={`
+            bg-cl-bg min-h-screen w-full
+            flex flex-col flex-1 items-center 
+            text-cl-text-900
+        `}>
+            {content}
         </main>
     )
 }

@@ -8,3 +8,27 @@
     --color-cl-gr-to: #F34616; /*#F6511D;*/
     --color-cl-text-900: #D4D7D8;
 }
+
+.smooth-gradient-change {
+    position: relative;
+    background: linear-gradient(to right, var(--color-cl-gr-from), var(--color-cl-gr-to));
+}
+
+.smooth-gradient-change::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--color-cl-text-900), var(--color-cl-gr-to));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: inherit;
+}
+
+.smooth-gradient-change:hover::after {
+    opacity: 1;
+}
+
+.smooth-gradient-change > * {
+    position: relative;
+    z-index: 1;
+}

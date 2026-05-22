@@ -16,6 +16,7 @@ function GradientBorderDiv({children, outerClassName, innerClassName} : Gradient
             ${outerClassName}
         `}>
             <div className={`
+                z-1
                 w-full h-full
                 flex items-center justify-center
                 bg-cl-bg-inner-100 rounded-lg p-7

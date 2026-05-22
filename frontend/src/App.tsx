@@ -10,14 +10,17 @@ import "./styles/style.css";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/problems",
       element: <Layout />,
       children: [
-        { path: "/", element: <Home />},
         { path: "/problems", element: <AllProblems />},
         { path: "/problems/:problem_type", element: <TypedProblems />},
         { path: "/problems/:problem_type/:id", element: <TypedIdProblems />}
       ]
+    },
+    {
+      path: "/", 
+      element: <Home />,
     },
     {
       path: "*",
