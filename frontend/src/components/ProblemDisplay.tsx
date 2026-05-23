@@ -52,9 +52,11 @@ function ProblemDisplay({problem_type, id, content, condition, answer, header} :
                     <LockedDiv outerClassName={`
                         w-40    
                     `} innerClassName={`
-                        h-ful;
+                        h-full
                     `}>
-                        {answer}
+                        <div>
+                            <BlockMath math={answer} />
+                        </div>
                     </LockedDiv>
                 </div>
 

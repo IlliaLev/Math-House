@@ -5,16 +5,17 @@ interface GradientBorderDivProps {
     outerClassName?: string,
     innerClassName?: string,
     gradientDirection?: string,
+    onClick?: () => void,
 }
 
-function GradientBorderDiv({children, outerClassName, innerClassName} : GradientBorderDivProps) {
+function GradientBorderDiv({children, outerClassName, innerClassName, onClick} : GradientBorderDivProps) {
     return (
         <div className={`
             p-0.5 rounded-lg 
             from-cl-gr-from to-cl-gr-to
             bg-linear-to-r
             ${outerClassName}
-        `}>
+        `} onClick={onClick}>
             <div className={`
                 z-1
                 w-full h-full

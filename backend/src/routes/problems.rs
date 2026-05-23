@@ -37,7 +37,7 @@ async fn get_problems_by_type(Path(problem_type): Path<String>) -> impl IntoResp
     let filtered: Vec<Problem> = problems.into_iter().filter(|p| p.problem_type == problem_type).collect();
 
     if filtered.is_empty() {
-        return (StatusCode::NOT_FOUND, Json("No problems were found")).into_response();
+        return (StatusCode::NOT_FOUND, Json("No Problems")).into_response();
     }
 
     return (StatusCode::OK, Json(filtered)).into_response();
